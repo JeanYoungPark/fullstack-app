@@ -1,0 +1,9 @@
+.container__wrapper {max-width: 388px; margin: 0 auto; padding-top: 15vh;}
+.logo {width:100%;}
+.socialLogin {margin: 2vh 0;}
+.socialLogin .txt {padding: 1vh 0;}
+.socialLogin .socialLogin__box {display:flex; align-items: center; justify-content: space-around;}
+.or {position:relative;}
+.or .mid-line {position:absolute; top:50%; width: 100%; height:1px; background-color: #ced0da; z-index: -1;}
+.or .txt {width: 54px; margin:0 auto; background-color: #fff; color:#90929e;}
+.form {padding:2vh 0;}
