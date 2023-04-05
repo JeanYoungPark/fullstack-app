@@ -4,7 +4,7 @@ import AuthFormComponent from '../../components/AuthFormComponent';
 const Join = () => {
   return (
     <div className="container fixed">
-        <AuthFormComponent service='회원가입'/>
+        <AuthFormComponent service='join'/>
     </div>
   )
 }
