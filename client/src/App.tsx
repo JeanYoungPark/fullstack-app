@@ -8,7 +8,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/" element={<MyComponent/>} /> */}
         <Route path="/login" element={<Login/>} />
         <Route path="/join" element={<Join/>} />
       </Routes>
