@@ -15,15 +15,20 @@ router.get("/", async (req, res, next) => {
 
 // 회원가입
 router.post("/", async (req, res, next) => {
-    res.send(req.body);
     try {
-        // await req.connection.query("INSERT INTO users SET ?", );
+        const { email, password } = req.body;
+        const result = await req.connection.query(
+            "INSERT INTO users (email, password) VALUES (?, ?)",
+            [email, password]
+        );
+        const insertId = result[0].insertId;
+        res.send({insertId: insertId});
     } catch (err) {
-
+        next(err);
     } finally {
-
+        req.connection.release();
     }
-});
+  });
 
 // 로그인
 
