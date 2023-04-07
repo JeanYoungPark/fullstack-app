@@ -2,16 +2,18 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import Join from "./pages/user/Join";
 import Login from "./pages/user/Login";
-// import MyComponent from './components/MyComponent';
+import {CookiesProvider} from "react-cookie";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/login" element={<Login/>} />
-        <Route path="/join" element={<Join/>} />
-      </Routes>
-    </Router>
+    <CookiesProvider>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login/>} />
+          <Route path="/join" element={<Join/>} />
+        </Routes>
+      </Router>
+    </CookiesProvider>
   );
 }
 

@@ -1,13 +1,11 @@
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 interface AuthFormComponentProps {
     service: string;
+    onSuccess: Function;
 }
 
 const AuthFormComponent : React.FC<AuthFormComponentProps> = (props) => {
-    const navigate = useNavigate();
-
     interface Data {
         email: string;
         password: string;
@@ -22,16 +20,18 @@ const AuthFormComponent : React.FC<AuthFormComponentProps> = (props) => {
                 email: formData.get("email") as string,
                 password: formData.get("password") as string
             }
-            const response = await axios.post('http://localhost:5000/users', data);
+            const response = await axios.post(`http://localhost:5000/users/${props.service}`, data);
             
-            if(response.data.insertId){
-                alert('로그인 페이지로 이동합니다.');
-                navigate('/login');    
+            if(response.status === 200) {
+                props.onSuccess(response.data); 
+            }else {
+                alert('잘못된 접근입니다.');
             }
         } catch (error) {
             console.log(error);
         }
-    };    
+    };
+     
     return (
         <div className="container__wrapper">
             <h1 className='logo text-center'>logo</h1>
