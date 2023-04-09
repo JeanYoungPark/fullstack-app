@@ -34,7 +34,7 @@ router.post("/join", async (req, res, next) => {
             const insertId = result.insertId;
             res.send({insertId: insertId});
         }else{
-            res.status(409).send("The email already exists.");
+            res.status(409).send({message:"The email already exists."});
         }
     } catch (err) {
         next(err);

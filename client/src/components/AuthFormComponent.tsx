@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 interface AuthFormComponentProps {
     service: string;
@@ -10,7 +10,7 @@ const AuthFormComponent : React.FC<AuthFormComponentProps> = (props) => {
         email: string;
         password: string;
     }
-        
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         
@@ -26,7 +26,13 @@ const AuthFormComponent : React.FC<AuthFormComponentProps> = (props) => {
                 props.onSuccess(response.data); 
             }
         } catch (error) {
-            alert(error.response);
+            if(axios.isAxiosError(error)){
+                const axiosError = error as AxiosError<{message:string}>;
+                if(axiosError.response?.data) {
+                    const errorMessage = axiosError.response.data.message;
+                    alert(errorMessage);
+                }
+            }
         }
     };
      
