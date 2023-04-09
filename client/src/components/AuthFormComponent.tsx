@@ -24,11 +24,9 @@ const AuthFormComponent : React.FC<AuthFormComponentProps> = (props) => {
             
             if(response.status === 200) {
                 props.onSuccess(response.data); 
-            }else {
-                alert('잘못된 접근입니다.');
             }
         } catch (error) {
-            console.log(error);
+            alert(error.response);
         }
     };
      

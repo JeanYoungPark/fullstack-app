@@ -22,14 +22,20 @@ router.get("/", async (req, res, next) => {
 router.post("/join", async (req, res, next) => {
     try {
         const { email, password } = req.body;
-        // 비밀번호 암호화
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-        const [result] = await req.connection.execute(
-            "INSERT INTO users (email, password) VALUES (?, ?)",
-            [email, hashedPassword]
-        );
-        const insertId = result.insertId;
-        res.send({insertId: insertId});
+
+        const [chkResult] = await req.connection.execute("SELECT * FROM users WHERE email=?",[email]);
+        if(chkResult.length === 0){
+            // 비밀번호 암호화
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
+            const [result] = await req.connection.execute(
+                "INSERT INTO users (email, password) VALUES (?, ?)",
+                [email, hashedPassword]
+            );
+            const insertId = result.insertId;
+            res.send({insertId: insertId});
+        }else{
+            res.status(409).send("The email already exists.");
+        }
     } catch (err) {
         next(err);
     } finally {
@@ -67,5 +73,4 @@ router.post("/login", async (req, res, next) => {
 });
 
 // 로그아웃
-
 module.exports = router;
