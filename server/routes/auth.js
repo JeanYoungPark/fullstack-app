@@ -1,5 +1,5 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 const bcrypt = require("bcrypt");
 const saltRounds = 10; // 해시에 사용되는 솔트의 길이
 const jwt = require("jsonwebtoken");
