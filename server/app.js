@@ -8,7 +8,7 @@ const pool = require("./db");
 
 let indexRouter = require("./routes/index");
 let authRouter = require("./routes/auth");
-let oauthRouter = require("./routes/oauth");
+let oAuthRouter = require("./routes/oauth");
 
 let app = express();
 
@@ -39,6 +39,10 @@ app.use(cookieParser());
 // 정적 파일들을 root 경로로 접근 할 수 있도록 설정
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use("/", indexRouter);
+app.use("/auth", authRouter);
+app.use("/oauth", oAuthRouter);
+
 // 존재하지 않는 페이지 접근시 404 에러
 app.use(function (req, res, next) {
   next(createError(404));
@@ -54,9 +58,5 @@ app.use(function (req, res, next) {
   // res.status(err.status || 500);
   // res.render("error");
 // });
-
-// app.use("/", indexRouter);
-app.use("/auth", authRouter);
-app.use("/oauth", oauthRouter);
 
 module.exports = app;

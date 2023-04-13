@@ -1,4 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
+import { useCookies } from 'react-cookie';
 
 interface AuthFormComponentProps {
     service: string;
@@ -10,6 +12,9 @@ const AuthFormComponent : React.FC<AuthFormComponentProps> = (props) => {
         email: string;
         password: string;
     }
+
+    const [naverLoginUrl, setNaverLoginUrl] = useState('');
+    const [cookies, setCookie] = useCookies(['naverLoginState']);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -35,7 +40,27 @@ const AuthFormComponent : React.FC<AuthFormComponentProps> = (props) => {
             }
         }
     };
-     
+    
+    // 네이버 로그인 URL 가져오기
+    const fetchNaverLoginUrl = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/oauth/naver-login-url');
+            setNaverLoginUrl(response.data.url);
+            setCookie('naverLoginState', response.data.naverLoginState, {path: '/'});
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // 컴포넌트가 처음 렌더링될 때 네이버 로그인 URL을 가져옴
+    useEffect(() => {
+        fetchNaverLoginUrl();
+    }, []);
+
+    const handleNaverClick = () => {
+        window.location.href = naverLoginUrl;
+    };
+
     return (
         <div className="container__wrapper">
             <h1 className='logo text-center'>logo</h1>
@@ -44,7 +69,7 @@ const AuthFormComponent : React.FC<AuthFormComponentProps> = (props) => {
                 <p className='txt text-center'>다른 서비스로 {props.service === 'login' ? '로그인' : '회원가입'}</p>
                 <ul className="socialLogin__box">
                     <li className="el google"><span>구글</span></li>
-                    <li className="el naver"><span>네이버</span></li>
+                    <li className="el naver"><span onClick={handleNaverClick}>네이버</span></li>
                     <li className="el kakao"><span>카카오톡</span></li>
                 </ul>
             </div>
