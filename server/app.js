@@ -11,6 +11,20 @@ let authRouter = require("./routes/auth");
 let oAuthRouter = require("./routes/oauth");
 
 let app = express();
+const session = require("express-session");
+require("dotenv").config();
+
+const crypto = require("crypto");
+const secret = crypto.randomBytes(64).toString("hex");
+process.env.SESSION_SECRET = secret;
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 // view 관련 사용 안할 것임으로 주석
 // app.set("views", path.join(__dirname, "views"));
@@ -18,8 +32,9 @@ let app = express();
 
 app.use(logger("dev"));
 
-app.use(cors());  // 다른 도메인에서 리소스 요청 허용 (HTTP 요청 방식)
-app.use(async (req, res, next) => { // 커넥션 연결
+app.use(cors()); // 다른 도메인에서 리소스 요청 허용 (HTTP 요청 방식)
+app.use(async (req, res, next) => {
+  // 커넥션 연결
   try {
     const connection = await pool.getConnection();
     req.connection = connection;
@@ -30,7 +45,7 @@ app.use(async (req, res, next) => { // 커넥션 연결
 });
 
 // 요청으로 들어오는 body를 JSON 객체로 파싱해주는 역할
-app.use(express.json()); 
+app.use(express.json());
 /* post 요청으로 전달된 데이터를 해석한다. content-type이 application/x-www-form-urlencoded 경우에만 동작
  * extended 매개변수가 true인 경우 querystring 모듈이 좀 더 유연하게 동작하도록 한다. false인 경우 배역과 객체를 처리하지 못한다.
  */
@@ -50,13 +65,13 @@ app.use(function (req, res, next) {
 
 // 미들웨어 체인에서 이전 미들웨어에서 에러가 발생하는 경우 실행
 // app.use(function (err, req, res, next) {
-  // 뷰에서 사용하는 로컬 변수
-  // res.locals.message = err.message;
-  // res.locals.error = req.app.get("env") === "development" ? err : {};
+// 뷰에서 사용하는 로컬 변수
+// res.locals.message = err.message;
+// res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
-  // res.status(err.status || 500);
-  // res.render("error");
+// render the error page
+// res.status(err.status || 500);
+// res.render("error");
 // });
 
 module.exports = app;
