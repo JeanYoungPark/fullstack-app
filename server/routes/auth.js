@@ -3,8 +3,9 @@ var router = express.Router();
 const bcrypt = require("bcrypt");
 const saltRounds = 10; // 해시에 사용되는 솔트의 길이
 const jwt = require("jsonwebtoken");
-const secret = 'jeanyoung'; // 서버에서만 알고 있는 비밀 키
+const secret = process.env.TOKEN_SECRET_KEY; // 서버에서만 알고 있는 비밀 키
 const expiresIn = '1d'; // 토큰의 유효기간
+
 
 // 회원정보 가져오기
 router.get("/", async (req, res, next) => {

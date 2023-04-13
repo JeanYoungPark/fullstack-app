@@ -7,7 +7,8 @@ let logger = require("morgan"); // 로깅에 도움을 주는 미들웨어
 const pool = require("./db");
 
 let indexRouter = require("./routes/index");
-let usersRouter = require("./routes/users");
+let authRouter = require("./routes/auth");
+let oauthRouter = require("./routes/oauth");
 
 let app = express();
 
@@ -39,22 +40,23 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // 존재하지 않는 페이지 접근시 404 에러
-// app.use(function (req, res, next) {
-//   next(createError(404));
-// });
+app.use(function (req, res, next) {
+  next(createError(404));
+});
 
 // 미들웨어 체인에서 이전 미들웨어에서 에러가 발생하는 경우 실행
-app.use(function (err, req, res, next) {
+// app.use(function (err, req, res, next) {
   // 뷰에서 사용하는 로컬 변수
   // res.locals.message = err.message;
   // res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render("error");
-});
+  // res.status(err.status || 500);
+  // res.render("error");
+// });
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+// app.use("/", indexRouter);
+app.use("/auth", authRouter);
+app.use("/oauth", oauthRouter);
 
 module.exports = app;

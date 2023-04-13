@@ -20,7 +20,7 @@ const AuthFormComponent : React.FC<AuthFormComponentProps> = (props) => {
                 email: formData.get("email") as string,
                 password: formData.get("password") as string
             }
-            const response = await axios.post(`http://localhost:5000/users/${props.service}`, data);
+            const response = await axios.post(`http://localhost:5000/auth/${props.service}`, data);
             
             if(response.status === 200) {
                 props.onSuccess(response.data); 
