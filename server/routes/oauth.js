@@ -14,17 +14,16 @@ router.get("/naver-login-url", async (req, res) => {
   const naverLoginUrl = `https://nid.naver.com/oauth2.0/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(
     REDIRECT_URI
   )}&state=${state}`;
-  req.session.naverLoginState = state;
-  console.log("1.", req.session.naverLoginState);
+
   res.send({ url: naverLoginUrl, naverLoginState: state });
 });
 
 // 네이버 로그인 Redirect URI로부터 axxess token 받기
 router.get("/naver-login", async (req, res) => {
   const { code, state } = req.query;
-  console.log("2.", req.session.naverLoginState);
-  // 세션에서 저장된 state와 비교
-  if (state !== req.session.naverLoginState) {
+
+  // 쿠키에서 저장된 state와 비교
+  if (state !== req.cookies.naverLoginState) {
     return res.status(400).send("잘못된 접근입니다.");
   }
 
@@ -35,9 +34,7 @@ router.get("/naver-login", async (req, res) => {
     code
   );
   const profile = await getNaverUserProfile(access_token);
-  res.redirect(
-    `http://localhost:3000/name=${profile.name}&email=${profile.email}`
-  );
+  res.redirect(`http://localhost:3000/id=${profile.id}`);
 });
 
 module.exports = router;

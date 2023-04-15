@@ -2,15 +2,19 @@ const axios = require("axios");
 
 async function getAccessToken(client_id, client_secret, redirect_uri, code) {
   try {
-    const response = await axios.post("https://nid.naver.com/oauth2.0/token", null, {
-      params: {
-        grant_type: "authorization_code",
-        client_id: client_id,
-        client_secret: client_secret,
-        redirect_uri: redirect_uri,
-        code: code,
-      },
-    });
+    const response = await axios.post(
+      "https://nid.naver.com/oauth2.0/token",
+      null,
+      {
+        params: {
+          grant_type: "authorization_code",
+          client_id: client_id,
+          client_secret: client_secret,
+          redirect_uri: redirect_uri,
+          code: code,
+        },
+      }
+    );
 
     return response.data.access_token;
   } catch (error) {
@@ -33,6 +37,6 @@ async function getNaverUserProfile(access_token) {
 }
 
 module.exports = {
-    getAccessToken,
-    getNaverUserProfile
-}
+  getAccessToken,
+  getNaverUserProfile,
+};
