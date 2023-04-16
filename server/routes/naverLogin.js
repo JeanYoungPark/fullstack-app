@@ -1,6 +1,12 @@
 const axios = require("axios");
 
-async function getAccessToken(client_id, client_secret, redirect_uri, code) {
+async function getAccessToken(
+  client_id,
+  client_secret,
+  redirect_uri,
+  code,
+  state
+) {
   try {
     const response = await axios.post(
       "https://nid.naver.com/oauth2.0/token",
@@ -12,6 +18,7 @@ async function getAccessToken(client_id, client_secret, redirect_uri, code) {
           client_secret: client_secret,
           redirect_uri: redirect_uri,
           code: code,
+          state: state,
         },
       }
     );
@@ -30,7 +37,7 @@ async function getNaverUserProfile(access_token) {
       },
     });
 
-    return response.data.response;
+    return response.data;
   } catch (error) {
     console.error(error);
   }

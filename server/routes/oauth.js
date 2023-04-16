@@ -31,10 +31,15 @@ router.get("/naver-login", async (req, res) => {
     CLIENT_ID,
     CLIENT_SECRET,
     REDIRECT_URI,
-    code
+    code,
+    state
   );
   const profile = await getNaverUserProfile(access_token);
-  res.redirect(`http://localhost:3000/id=${profile.id}`);
+
+  if (profile.id) {
+    // 이메일 디비에 저장?은 고민
+  }
+  res.redirect(`http://localhost:3000`);
 });
 
 module.exports = router;
