@@ -3,70 +3,85 @@ import axios, { AxiosError } from "axios";
 import { useCookies } from "react-cookie";
 
 interface AuthFormComponentProps {
-  service: string;
-  onSuccess: Function;
+    service: string;
+    onSuccess: Function;
 }
 
 const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
-  interface Data {
-    email: string;
-    password: string;
-  }
+    interface Data {
+        email: string;
+        password: string;
+    }
 
-  const [naverLoginUrl, setNaverLoginUrl] = useState("");
-  const [cookies, setCookie] = useCookies(["naverLoginState"]);
+    const [naverLoginUrl, setNaverLoginUrl] = useState("");
+    const [kakaoLoginUrl, setKakaoLoginUrl] = useState("");
+    const [cookies, setCookie] = useCookies(["loginState"]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-    try {
-      const formData = new FormData(e.currentTarget);
-      const data: Data = {
-        email: formData.get("email") as string,
-        password: formData.get("password") as string,
-      };
-      const response = await axios.post(
-        `http://localhost:5000/auth/${props.service}`,
-        data
-      );
+        try {
+            const formData = new FormData(e.currentTarget);
+            const data: Data = {
+                email: formData.get("email") as string,
+                password: formData.get("password") as string,
+            };
+            const response = await axios.post(
+                `http://localhost:5000/auth/${props.service}`,
+                data
+            );
 
-      if (response.status === 200) {
-        props.onSuccess(response.data);
-      }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        const axiosError = error as AxiosError<{ message: string }>;
-        if (axiosError.response?.data) {
-          const errorMessage = axiosError.response.data.message;
-          alert(errorMessage);
+            if (response.status === 200) {
+                props.onSuccess(response.data);
+            }
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const axiosError = error as AxiosError<{ message: string }>;
+                if (axiosError.response?.data) {
+                const errorMessage = axiosError.response.data.message;
+                alert(errorMessage);
+                }
+            }
         }
-      }
+    };
+
+    // 네이버 로그인 URL 가져오기
+    const fetchNaverLoginUrl = async () => {
+        try {
+            const response = await axios.get("http://localhost:5000/oauth/naver-login-url");
+            setNaverLoginUrl(response.data.url);
+            // 쿠키를 여기서 말고 access_token이 오면 저장해주는게 맞을꺼 같음
+            setCookie("loginState", response.data.naverLoginState, {path: "/"});
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // 카카오 로그인 URL 가져오기
+    const fetchKakaoLoginUrl = async () => {
+        try{
+            const response = await axios.get("http://localhost:5000/oauth/kakao-login-url");
+            setKakaoLoginUrl(response.data.url);
+            // 쿠키를 여기서 말고 access_token이 오면 저장해주는게 맞을꺼 같음
+            setCookie("loginState", response.data.kakaoLoginState, {path: "/"});
+        }catch(error){
+            console.log(error);
+        }
     }
-  };
+    
+    // 컴포넌트가 처음 렌더링될 때 네이버 로그인 URL을 가져옴
+    useEffect(() => {
+        fetchNaverLoginUrl();
+        fetchKakaoLoginUrl();
+    }, []);
 
-  // 네이버 로그인 URL 가져오기
-  const fetchNaverLoginUrl = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:5000/oauth/naver-login-url"
-      );
-      setNaverLoginUrl(response.data.url);
-      setCookie("naverLoginState", response.data.naverLoginState, {
-        path: "/",
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    const handleNaverClick = () => {
+        window.location.href = naverLoginUrl;
+    };
 
-  // 컴포넌트가 처음 렌더링될 때 네이버 로그인 URL을 가져옴
-  useEffect(() => {
-    fetchNaverLoginUrl();
-  }, []);
-
-  const handleNaverClick = () => {
-    window.location.href = naverLoginUrl;
-  };
+    const handleKakaoClick = () => {
+        window.location.href = kakaoLoginUrl;
+    };
 
   return (
     <div className="container__wrapper">
@@ -84,7 +99,7 @@ const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
             <span onClick={handleNaverClick}>네이버</span>
           </li>
           <li className="el kakao">
-            <span>카카오톡</span>
+            <span onClick={handleKakaoClick}>카카오톡</span>
           </li>
         </ul>
       </div>
