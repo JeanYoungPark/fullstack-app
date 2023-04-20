@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios, { AxiosError } from "axios";
-import { useCookies } from "react-cookie";
 
 interface AuthFormComponentProps {
     service: string;
