@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie';
 
 const Login = () => {
     const navigate = useNavigate();
-    const [cookies, setCookie] = useCookies(['token']);
+    const [cookies, setCookie] = useCookies(['loginState']);
 
     interface tokenResponseProps {
         email: string;
@@ -14,7 +14,7 @@ const Login = () => {
     }
 
     const handleSuccess = (res: tokenResponseProps) => {
-        setCookie('token', res.token, {path: '/', maxAge: 86400});
+        setCookie('loginState', res.token, {path: '/', maxAge: 86400});
         navigate('/');
     };
 

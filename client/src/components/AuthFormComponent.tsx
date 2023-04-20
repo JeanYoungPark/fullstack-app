@@ -15,7 +15,6 @@ const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
 
     const [naverLoginUrl, setNaverLoginUrl] = useState("");
     const [kakaoLoginUrl, setKakaoLoginUrl] = useState("");
-    const [cookies, setCookie] = useCookies(["loginState"]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -50,8 +49,6 @@ const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
         try {
             const response = await axios.get("http://localhost:5000/oauth/naver-login-url");
             setNaverLoginUrl(response.data.url);
-            // 쿠키를 여기서 말고 access_token이 오면 저장해주는게 맞을꺼 같음
-            setCookie("loginState", response.data.naverLoginState, {path: "/"});
         } catch (error) {
             console.log(error);
         }
@@ -62,8 +59,6 @@ const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
         try{
             const response = await axios.get("http://localhost:5000/oauth/kakao-login-url");
             setKakaoLoginUrl(response.data.url);
-            // 쿠키를 여기서 말고 access_token이 오면 저장해주는게 맞을꺼 같음
-            setCookie("loginState", response.data.kakaoLoginState, {path: "/"});
         }catch(error){
             console.log(error);
         }

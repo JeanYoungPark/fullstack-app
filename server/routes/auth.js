@@ -62,6 +62,7 @@ router.post("/login", async (req, res, next) => {
 
         if(isMatch){
             const token = jwt.sign({ email, password }, secret, {expiresIn});
+            // 디비에 저장
             res.send({email: email, token: token});
         }else{
             res.status(401).send("invalid email or password");
