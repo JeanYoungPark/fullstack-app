@@ -52,7 +52,7 @@ router.get("/naver-login", async (req, res, next) => {
             );
 
             if (result) {
-                res.redirect(`http://localhost:3000`);
+                res.redirect(`http://localhost/user/auth`);
             } else {
                 res.status(409).send({ message: "try again." });
             }
@@ -103,7 +103,7 @@ router.get("/kakao-login", async (req, res, next) => {
                 [state, expired]
             );
             if (result) {
-                res.redirect(`http://localhost:3000`);
+                res.redirect(`http://localhost/user/auth`);
             } else {
                 res.status(409).send({ message: "try again." });
             }
