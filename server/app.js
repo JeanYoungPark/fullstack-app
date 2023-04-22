@@ -19,14 +19,14 @@ const secret = crypto.randomBytes(64).toString("hex");
 process.env.SESSION_SECRET = secret;
 
 app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 60 * 1000,
-    },
-  })
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            maxAge: 60 * 1000,
+        },
+    })
 );
 
 // view 관련 사용 안할 것임으로 주석
@@ -37,14 +37,14 @@ app.use(logger("dev"));
 
 app.use(cors()); // 다른 도메인에서 리소스 요청 허용 (HTTP 요청 방식)
 app.use(async (req, res, next) => {
-  // 커넥션 연결
-  try {
-    const connection = await pool.getConnection();
-    req.connection = connection;
-    next();
-  } catch (err) {
-    next(err);
-  }
+    // 커넥션 연결
+    try {
+        const connection = await pool.getConnection();
+        req.connection = connection;
+        next();
+    } catch (err) {
+        next(err);
+    }
 });
 
 // 요청으로 들어오는 body를 JSON 객체로 파싱해주는 역할
@@ -63,7 +63,7 @@ app.use("/oauth", oAuthRouter);
 
 // 존재하지 않는 페이지 접근시 404 에러
 app.use(function (req, res, next) {
-  next(createError(404));
+    next(createError(404));
 });
 
 // 미들웨어 체인에서 이전 미들웨어에서 에러가 발생하는 경우 실행

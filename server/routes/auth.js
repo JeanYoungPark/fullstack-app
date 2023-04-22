@@ -4,8 +4,7 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10; // 해시에 사용되는 솔트의 길이
 const jwt = require("jsonwebtoken");
 const secret = process.env.TOKEN_SECRET_KEY; // 서버에서만 알고 있는 비밀 키
-const expiresIn = '1d'; // 토큰의 유효기간
-
+const expiresIn = "1d"; // 토큰의 유효기간
 
 // 회원정보 가져오기
 router.get("/", async (req, res, next) => {
@@ -24,8 +23,11 @@ router.post("/join", async (req, res, next) => {
     try {
         const { email, password } = req.body;
 
-        const [chkResult] = await req.connection.execute("SELECT * FROM users WHERE email=?",[email]);
-        if(chkResult.length === 0){
+        const [chkResult] = await req.connection.execute(
+            "SELECT * FROM users WHERE email=?",
+            [email]
+        );
+        if (chkResult.length === 0) {
             // 비밀번호 암호화
             const hashedPassword = await bcrypt.hash(password, saltRounds);
             const [result] = await req.connection.execute(
@@ -33,9 +35,9 @@ router.post("/join", async (req, res, next) => {
                 [email, hashedPassword]
             );
             const insertId = result.insertId;
-            res.send({insertId: insertId});
-        }else{
-            res.status(409).send({message:"The email already exists."});
+            res.send({ insertId: insertId });
+        } else {
+            res.status(409).send({ message: "The email already exists." });
         }
     } catch (err) {
         next(err);
@@ -52,19 +54,31 @@ router.post("/login", async (req, res, next) => {
             "SELECT * FROM users WHERE email=?",
             [email]
         );
-        
-        if(result.length === 0){
+
+        if (result.length === 0) {
             res.status(401).send("invalid email or password");
             return;
         }
         const hashedPassword = result[0].password;
         const isMatch = await bcrypt.compare(password, hashedPassword);
 
-        if(isMatch){
-            const token = jwt.sign({ email, password }, secret, {expiresIn});
-            // 디비에 저장
-            res.send({email: email, token: token});
-        }else{
+        if (isMatch) {
+            // 유효기간 하루
+            const now = new Date();
+            const expirationDate = new Date(now + 24 * 60 * 60 * 1000);
+            const expired = Math.floor(expirationDate.getTime() / 1000);
+
+            const token = jwt.sign({ email, password }, secret, { expiresIn });
+            const [result] = await req.connection.execute(
+                "INSERT INTO sessions (session_id , expiration) VALUES (?, ?)",
+                [token, expired]
+            );
+            if (result) {
+                res.send({ email: email, token: token });
+            } else {
+                res.status(409).send("try again");
+            }
+        } else {
             res.status(401).send("invalid email or password");
         }
     } catch (err) {
