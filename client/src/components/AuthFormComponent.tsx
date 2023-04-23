@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios, { AxiosError } from "axios";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 
 interface AuthFormComponentProps {
     service: string;
@@ -12,6 +14,7 @@ const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
         password: string;
     }
 
+    const isLoggedIn = useSelector((state: RootState) => state.auth);
     const [naverLoginUrl, setNaverLoginUrl] = useState("");
     const [kakaoLoginUrl, setKakaoLoginUrl] = useState("");
 
@@ -71,6 +74,7 @@ const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
     useEffect(() => {
         fetchNaverLoginUrl();
         fetchKakaoLoginUrl();
+        console.log(isLoggedIn);
     }, []);
 
     const handleGoogleClidk = () => {
@@ -91,7 +95,7 @@ const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
             <p className="text-center">하나의 계정으로 서비스를 이용하세요.</p>
             <div className="socialLogin">
                 <p className="txt text-center">
-                    다른 서비스로{" "}
+                    다른 서비스로
                     {props.service === "login" ? "로그인" : "회원가입"}
                 </p>
                 <ul className="socialLogin__box">

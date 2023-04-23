@@ -10,18 +10,19 @@ const initialState: AuthState = {
     token: null,
 };
 
-const authReducer = (state = initialState, action: AuthAction) => {
+const authReducer = (state: AuthState = initialState, action: AuthAction) => {
     switch (action.type) {
         case "LOGIN_SUCCESS":
+            console.log(action);
             return {
                 ...state,
-                isLogginIn: true,
-                token: action.payload.token,
+                isLoggedIn: true,
+                token: action.payload,
             };
         case "LOGOUT":
             return {
                 ...state,
-                isLogginIn: false,
+                isLoggedIn: false,
                 token: null,
             };
         default:

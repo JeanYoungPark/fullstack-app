@@ -3,10 +3,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import authReducer from "./reducers/authReducer";
+import store from "./store/index";
 
-const store = createStore(authReducer);
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );

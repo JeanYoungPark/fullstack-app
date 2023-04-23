@@ -38,7 +38,7 @@ router.get("/naver-login", async (req, res, next) => {
             const expired = Math.floor(expirationDate.getTime() / 1000);
 
             // 쿠키 세팅
-            res.cookie("login_state", state, {
+            res.cookie("loginState", state, {
                 httpOnly: true,
                 secure: false,
                 domain: "localhost",
@@ -52,7 +52,7 @@ router.get("/naver-login", async (req, res, next) => {
             );
 
             if (result) {
-                res.redirect(`http://localhost/user/auth`);
+                res.redirect(`http://localhost:3000/auth`);
             } else {
                 res.status(409).send({ message: "try again." });
             }
@@ -90,7 +90,7 @@ router.get("/kakao-login", async (req, res, next) => {
             const expired = Math.floor(expirationDate.getTime() / 1000);
 
             // 쿠키 세팅
-            res.cookie("login_state", state, {
+            res.cookie("loginState", state, {
                 httpOnly: true,
                 secure: false,
                 domain: "localhost",
@@ -103,7 +103,7 @@ router.get("/kakao-login", async (req, res, next) => {
                 [state, expired]
             );
             if (result) {
-                res.redirect(`http://localhost/user/auth`);
+                res.redirect(`http://localhost:3000/auth`);
             } else {
                 res.status(409).send({ message: "try again." });
             }

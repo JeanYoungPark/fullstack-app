@@ -7,7 +7,7 @@ import { loginSuccess } from "../../actions/authAction";
 
 const Login = () => {
     const navigate = useNavigate();
-    const [cookies, setCookie] = useCookies(["loginState"]);
+    const [, setCookie] = useCookies(["loginState"]);
     const dispatch = useDispatch();
 
     interface tokenResponseProps {
