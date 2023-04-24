@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios, { AxiosError } from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
+import { useNavigate } from "react-router-dom";
 
 interface AuthFormComponentProps {
     service: string;
@@ -14,7 +15,8 @@ const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
         password: string;
     }
 
-    const isLoggedIn = useSelector((state: RootState) => state.auth);
+    const navigate = useNavigate();
+    const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
     const [naverLoginUrl, setNaverLoginUrl] = useState("");
     const [kakaoLoginUrl, setKakaoLoginUrl] = useState("");
 
@@ -72,8 +74,14 @@ const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
 
     // 컴포넌트가 처음 렌더링될 때 네이버 로그인 URL을 가져옴
     useEffect(() => {
-        fetchNaverLoginUrl();
-        fetchKakaoLoginUrl();
+        if(isLoggedIn){
+            alert("잘못된 접근입니다. 메인 페이지로 이동합니다.");
+            navigate("/");
+        }else{
+            fetchNaverLoginUrl();
+            fetchKakaoLoginUrl();
+        }
+        
     }, []);
 
     const handleGoogleClidk = () => {
