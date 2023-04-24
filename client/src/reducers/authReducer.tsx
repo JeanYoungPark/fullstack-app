@@ -1,8 +1,12 @@
 import { AuthAction } from "../actions/authActionType";
 
+export interface Token {
+    token: string;
+  }
+
 export interface AuthState {
     isLoggedIn: boolean;
-    token: string | null;
+    token: Token | null;
 }
 
 const initialState: AuthState = {
@@ -13,7 +17,6 @@ const initialState: AuthState = {
 const authReducer = (state: AuthState = initialState, action: AuthAction) => {
     switch (action.type) {
         case "LOGIN_SUCCESS":
-            console.log(action);
             return {
                 ...state,
                 isLoggedIn: true,

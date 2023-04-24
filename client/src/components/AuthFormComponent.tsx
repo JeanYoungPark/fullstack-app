@@ -74,7 +74,6 @@ const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
     useEffect(() => {
         fetchNaverLoginUrl();
         fetchKakaoLoginUrl();
-        console.log(isLoggedIn);
     }, []);
 
     const handleGoogleClidk = () => {
