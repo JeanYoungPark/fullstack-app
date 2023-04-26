@@ -1,11 +1,12 @@
 import React from 'react';
-import { Route, Redirect, RouteProps } from 'react-router-dom';
+import { Route, Redirect, RouteProps  } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 
 
-interface PrivateRouteProps extends RouteProps {
+type PrivateRouteProps = RouteProps & {
   component: React.ComponentType<any>;
+  path: String;
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...rest }) => {
