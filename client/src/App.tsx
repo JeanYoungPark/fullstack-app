@@ -1,21 +1,36 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Join from "./pages/user/Join";
 import Login from "./pages/user/Login";
 import Auth from "./pages/user/Auth";
+import Home from "./pages/Home";
 import { CookiesProvider } from "react-cookie";
-import PrivateRoute from "./routes/PrivateRoute";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
 
 function App() {
+    const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+
     return (
         <CookiesProvider>
-            <Router>
+            <BrowserRouter>
                 <Routes>
-                    <PrivateRoute path="/login" component={<Login />}/>
-                    <Route path="/join" component={<Join />}/>
-                    <Route path="/auth" component={<Auth />} />
+                    <Route path="/" element={<Home />} />
+                    <Route
+                        path="/login"
+                        element={!isLoggedIn ? <Login /> : <Home />}
+                    />
+                    <Route
+                        path="/join"
+                        element={!isLoggedIn ? <Join /> : <Home />}
+                    />
+                    <Route
+                        path="/auth"
+                        element={!isLoggedIn ? <Auth /> : <Home />}
+                    />
                 </Routes>
-            </Router>
+            </BrowserRouter>
         </CookiesProvider>
     );
 }
