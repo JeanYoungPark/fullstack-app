@@ -1,3 +1,4 @@
+// 사용x 참고용
 import { AuthAction } from "../actions/authActionType";
 
 export interface Token {

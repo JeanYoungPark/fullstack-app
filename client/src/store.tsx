@@ -1,8 +1,9 @@
-import { combineReducers, createStore, Store, applyMiddleware } from "redux";
+import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, Store } from "redux";
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import authReducer from "../reducers/authReducer";
-import { composeWithDevTools } from 'redux-devtools-extension';
+import authReducer from "./slices/authSlice";
+import authMiddleware from "./middlewares/authMiddleware";
 
 const authPersistConfig = {
     key: 'auth',
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
 // RootState 타입정의
 export type RootState = ReturnType<typeof rootReducer>;
 
-const store: Store<RootState> = createStore(rootReducer, composeWithDevTools());
+const store: Store<RootState> = configureStore({reducer: rootReducer, middleware: [authMiddleware]});
 const persistor = persistStore(store);
 
 export {store, persistor};
+

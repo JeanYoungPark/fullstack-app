@@ -74,6 +74,7 @@ const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
 
     // 컴포넌트가 처음 렌더링될 때 네이버 로그인 URL을 가져옴
     useEffect(() => {
+        console.log(isLoggedIn);
         if(isLoggedIn){
             alert("잘못된 접근입니다. 메인 페이지로 이동합니다.");
             navigate("/");

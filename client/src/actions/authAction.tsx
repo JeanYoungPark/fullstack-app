@@ -1,3 +1,4 @@
+// 사용x 참고용
 import { ActionType } from "./authActionType";
 
 export const loginSuccess = (token: String) => ({

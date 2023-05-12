@@ -1,3 +1,4 @@
+// 사용x 참고용
 export enum ActionType {
     LOGIN_SUCCESS = "LOGIN_SUCCESS",
     LOGOUT = "LOGOUT",

@@ -11,14 +11,17 @@ import { useSelector } from "react-redux";
 import { RootState } from "./store";
 
 function App() {
-    const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+    // const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
     return (
         <CookiesProvider>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/join" element={<Join />} />
+                    <Route path="/auth" element={<Auth />} />
+                    {/* <Route
                         path="/login"
                         element={!isLoggedIn ? <Login /> : <Home />}
                     />
@@ -30,7 +33,7 @@ function App() {
                         path="/auth"
                         element={!isLoggedIn ? <Auth /> : <Home />}
                     />
-                    <Route path="/board" element={<BoardList />} />
+                    <Route path="/board" element={<BoardList />} /> */}
                 </Routes>
             </BrowserRouter>
         </CookiesProvider>

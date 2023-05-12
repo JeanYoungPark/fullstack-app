@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Cookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import { loginSuccess } from "../../actions/authAction";
+import { loginSuccess } from "../../slices/authSlice";
 
 function Auth() {
     const navigate = useNavigate();
@@ -11,7 +11,7 @@ function Auth() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(loginSuccess(loginState));
+        dispatch(loginSuccess({token: loginState}));
         navigate("/");
     }, [dispatch, navigate, loginState]);
     return <div></div>;
