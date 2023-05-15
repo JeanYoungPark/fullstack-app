@@ -1,6 +1,7 @@
 import './styles.css';
 import AuthFormComponent from '../../components/AuthFormComponent';
 import { useNavigate } from 'react-router-dom';
+import { withNoAuth } from '../../hocs/withAuth';
 
 const Join = () => {
     const navigate = useNavigate();
@@ -16,4 +17,4 @@ const Join = () => {
     )
 }
 
-export default Join
+export default withNoAuth(Join);

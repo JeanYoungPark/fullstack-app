@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../slices/authSlice";
+import { withNoAuth } from "../../hocs/withAuth";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -28,4 +29,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default withNoAuth(Login);

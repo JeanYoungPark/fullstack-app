@@ -7,12 +7,8 @@ import Auth from "./pages/user/Auth";
 import Home from "./pages/Home";
 import BoardList from "./pages/board/List";
 import { CookiesProvider } from "react-cookie";
-import { useSelector } from "react-redux";
-import { RootState } from "./store";
 
 function App() {
-    // const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
-
     return (
         <CookiesProvider>
             <BrowserRouter>
@@ -21,19 +17,6 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/join" element={<Join />} />
                     <Route path="/auth" element={<Auth />} />
-                    {/* <Route
-                        path="/login"
-                        element={!isLoggedIn ? <Login /> : <Home />}
-                    />
-                    <Route
-                        path="/join"
-                        element={!isLoggedIn ? <Join /> : <Home />}
-                    />
-                    <Route
-                        path="/auth"
-                        element={!isLoggedIn ? <Auth /> : <Home />}
-                    />
-                    <Route path="/board" element={<BoardList />} /> */}
                 </Routes>
             </BrowserRouter>
         </CookiesProvider>
