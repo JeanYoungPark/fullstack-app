@@ -1,4 +1,3 @@
-import React from "react";
 import BoardListComponent from "../../components/BoardListComponent";
 
 function List() {
