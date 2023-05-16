@@ -3,8 +3,8 @@ import AuthFormComponent from "../../components/AuthFormComponent";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
-import { loginSuccess } from "../../slices/authSlice";
-import { withNoAuth } from "../../hocs/withAuth";
+import { loginSuccess } from "../../actions/authAction";
+import { useCallback } from "react";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -16,11 +16,11 @@ const Login = () => {
         token: string;
     }
 
-    const handleSuccess = (res: tokenResponseProps) => {
-        dispatch(loginSuccess({token: res.token}));
+    const handleSuccess = useCallback((res: tokenResponseProps) => {
+        dispatch(loginSuccess(res.token));
         setCookie("loginState", res.token, { path: "/", maxAge: 86400 });
         navigate("/");
-    };
+    }, []);
 
     return (
         <div className="container fixed">
@@ -29,4 +29,4 @@ const Login = () => {
     );
 };
 
-export default withNoAuth(Login);
+export default Login;
