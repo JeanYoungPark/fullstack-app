@@ -6,7 +6,7 @@ interface AuthFormComponentProps {
     onSuccess: Function;
 }
 
-const AuthFormComponent: React.FC<AuthFormComponentProps> = (props) => {
+function AuthFormComponent(props: AuthFormComponentProps){
     interface Data {
         email: string;
         password: string;

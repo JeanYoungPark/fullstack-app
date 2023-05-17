@@ -6,11 +6,11 @@
 .socialLogin .socialLogin__box .el {padding: 5px; box-shadow:0 0 1px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24) ; border-radius:5px; cursor:pointer; text-indent: -9999px;}
 .socialLogin .socialLogin__box .el span {display:block; width: 50px; height: 50px; background-position: center; background-size: contain; background-repeat: no-repeat;}
 .socialLogin .socialLogin__box .google {background-color:#fff;}
-.socialLogin .socialLogin__box .google span {background-image: url('../../../public/images/google_logo.png');}
+.socialLogin .socialLogin__box .google span {background-image: url('../../public/images/google_logo.png');}
 .socialLogin .socialLogin__box .naver {background-color: #00bb12;}
-.socialLogin .socialLogin__box .naver span { background-image: url('../../../public/images/naver_logo.png');}
+.socialLogin .socialLogin__box .naver span { background-image: url('../../public/images/naver_logo.png');}
 .socialLogin .socialLogin__box .kakao {background-color: #ffdd31;}
-.socialLogin .socialLogin__box .kakao span {background-image: url('../../../public/images/kakaoTalk_logo.png');}
+.socialLogin .socialLogin__box .kakao span {background-image: url('../../public/images/kakaoTalk_logo.png');}
 .or {position:relative;}
 .or .mid-line {position:absolute; top:50%; width: 100%; height:1px; background-color: #ced0da; z-index: -1;}
 .or .txt {width: 54px; margin:0 auto; background-color: #fff; color:#90929e;}

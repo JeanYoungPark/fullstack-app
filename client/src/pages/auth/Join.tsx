@@ -1,8 +1,8 @@
-import './styles.css';
+import "../../styles/auth.css";
+import { useCallback } from 'react';
 import AuthFormComponent from '../../components/AuthFormComponent';
 import { useNavigate } from 'react-router-dom';
 import { withNoAuth } from '../../hocs/withAuth';
-import { useCallback } from 'react';
 
 const Join = () => {
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Join = () => {
     }, []);
 
     return (
-      <div className="container fixed">
+      <div className="container">
           <AuthFormComponent service='join' onSuccess={handleSuccess}/>
       </div>
     )

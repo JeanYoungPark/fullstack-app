@@ -1,30 +1,30 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Join from "./pages/user/Join";
-import Login from "./pages/user/Login";
-import Auth from "./pages/user/Auth";
+import Join from "./pages/auth/Join";
+import Login from "./pages/auth/Login";
+import Auth from "./pages/auth/Auth";
 import Home from "./pages/Home";
 import BoardList from "./pages/board/List";
 import BoardView from "./pages/board/View";
 import { CookiesProvider } from "react-cookie";
-import TabComponent from "./components/TabComponent";
+import Layout from "./components/common/LayoutComponent";
 
 function App() {
     return (
         <CookiesProvider>
             <BrowserRouter>
-                <TabComponent />
-                <Routes>
-                    <Route path="/" element={<Home />}>
-                        <Route path="login" element={<Login />} />
-                        <Route path="join" element={<Join />} />
-                        <Route path="auth" element={<Auth />} />
-                        <Route path="post" element={<BoardList/>}>
+                <Layout>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/join" element={<Join />} />
+                        <Route path="/auth" element={<Auth />} />
+                        <Route path="/board" element={<BoardList/>}>
                             <Route path=":postId" element={<BoardView/>}/>
                         </Route>
-                    </Route>
-                </Routes>
+                    </Routes>
+                </Layout>
             </BrowserRouter>
         </CookiesProvider>
     );

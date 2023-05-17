@@ -45,9 +45,6 @@ const withNoAuth = (
             if(Object.keys(Cookie).length === 0){
                 if(isLogin){
                     dispatch(logout());
-                }else{
-                    alert('비회원만 이용 가능합니다.');
-                    navigate('/');
                 }
             }else{
                 alert('비회원만 이용 가능합니다.');

@@ -114,7 +114,7 @@ footer {
 }
 
 /* button styles */
-button,
+/* button,
 input[type="submit"] {
   display: inline-block;
   width: 100%;
@@ -126,12 +126,12 @@ input[type="submit"] {
   cursor: pointer;
   box-sizing: border-box;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out
-}
+} */
 
-button:hover,
+/* button:hover,
 input[type="submit"]:hover {
   background-color: #3e85e4;
-}
+} */
 
 /* form styles */
 form label {
@@ -179,5 +179,3 @@ table th {
 .text-right {
   text-align: right;
 }
-
-.fixed {position:fixed; width: 100%; height: 100%; top: 0; bottom: 0;}

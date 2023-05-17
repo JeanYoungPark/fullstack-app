@@ -1,10 +1,11 @@
-import "./styles.css";
+import "../../styles/auth.css";
+import { useCallback } from "react";
 import AuthFormComponent from "../../components/AuthFormComponent";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../actions/authAction";
-import { useCallback } from "react";
+import { withNoAuth } from '../../hocs/withAuth';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -23,10 +24,10 @@ const Login = () => {
     }, []);
 
     return (
-        <div className="container fixed">
+        <div className="container">
             <AuthFormComponent service="login" onSuccess={handleSuccess} />
         </div>
     );
 };
 
-export default Login;
+export default withNoAuth(Login);
