@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BoardListComponent from "../../components/BoardListComponent";
+import BoardListComponent from "../../components/board/BoardListComponent";
 import { BoardTitle, BoardTab, BoardTabList } from "../../styles/board";
 
 function List() {
