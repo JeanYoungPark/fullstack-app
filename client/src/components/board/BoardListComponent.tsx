@@ -1,4 +1,4 @@
-import { BoardHeader, BoardSearchWrap, BoardSearch, BoardSearchBtn, BoardTable, BoardTableTh, BoardTableTd } from "../styles/board";
+import { BoardHeader, BoardSearchWrap, BoardSearch, BoardSearchBtn, BoardTable, BoardTableTh, BoardTableTd } from "../../styles/board";
 
 interface ChildProps {
     category: string;
