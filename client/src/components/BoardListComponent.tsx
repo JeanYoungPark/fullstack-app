@@ -1,4 +1,4 @@
-import { BoardHeader, BoardSearch } from "../styles/board";
+import { BoardHeader, BoardSearchWrap, BoardSearch, BoardSearchBtn, BoardTable, BoardTableTh, BoardTableTd } from "../styles/board";
 
 interface ChildProps {
     category: string;
@@ -9,35 +9,35 @@ function BoardListComponent(props: ChildProps) {
         <div>
             <BoardHeader>
                 <h2>신간 게시판</h2>
-                <div>
+                <BoardSearchWrap>
                     <BoardSearch type="text" placeholder="Search" />
-                    <button type="button">검색</button>
-                </div>
+                    <BoardSearchBtn type="button">검색</BoardSearchBtn>
+                </BoardSearchWrap>
             </BoardHeader>
-            <table>
+            <BoardTable>
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>카테고리</th>
-                        <th>제목</th>
-                        <th>글쓴이</th>
-                        <th>작성시간</th>
-                        <th>조회수</th>
-                        <th>좋아요</th>
+                        <BoardTableTh>No</BoardTableTh>
+                        <BoardTableTh>카테고리</BoardTableTh>
+                        <BoardTableTh>제목</BoardTableTh>
+                        <BoardTableTh>글쓴이</BoardTableTh>
+                        <BoardTableTh>작성시간</BoardTableTh>
+                        <BoardTableTh>조회수</BoardTableTh>
+                        <BoardTableTh>좋아요</BoardTableTh>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>소설</td>
-                        <td>10월 26일 자기계발 신간 리스트</td>
-                        <td>관리자</td>
-                        <td>40분전</td>
-                        <td>1</td>
-                        <td>2</td>
+                        <BoardTableTd>1</BoardTableTd>
+                        <BoardTableTd>소설</BoardTableTd>
+                        <BoardTableTd>10월 26일 자기계발 신간 리스트</BoardTableTd>
+                        <BoardTableTd>관리자</BoardTableTd>
+                        <BoardTableTd>40분전</BoardTableTd>
+                        <BoardTableTd>1</BoardTableTd>
+                        <BoardTableTd>2</BoardTableTd>
                     </tr>
                 </tbody>
-            </table>
+            </BoardTable>
         </div>
     );
 }

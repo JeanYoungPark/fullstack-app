@@ -154,23 +154,6 @@ form textarea {
   height: 150px;
 }
 
-/* table styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table th,
-table td {
-  padding: 10px;
-  text-align: left;
-  border: 1px solid #ccc;
-}
-
-table th {
-  font-weight: bold;
-}
-
 /* utility classes */
 .text-center {
   text-align: center;

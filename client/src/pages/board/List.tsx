@@ -10,7 +10,7 @@ function List() {
             <BoardTitle>게시판</BoardTitle>
             <div>
                 <BoardTab>
-                    <BoardTabList>전체</BoardTabList>
+                    <BoardTabList className="focus">전체</BoardTabList>
                     <BoardTabList>문학</BoardTabList>
                     <BoardTabList>경제경영</BoardTabList>
                     <BoardTabList>자기계발</BoardTabList>
