@@ -1,5 +1,5 @@
-import React from "react";
+import { withAuth } from "../../hocs/withAuth";
 
-export const view = () => {
+export const view = withAuth(() => {
     return <div>view</div>;
-}
+});

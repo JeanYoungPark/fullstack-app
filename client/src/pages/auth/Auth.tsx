@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { loginSuccess } from "../../slices/authSlice";
 import { withNoAuth } from "../../hocs/withAuth";
 
-function Auth() {
+export const Auth = withNoAuth(() => {
     const navigate = useNavigate();
     const cookies = new Cookies();
     const loginState = cookies.get("loginState");
@@ -16,6 +16,4 @@ function Auth() {
         navigate("/");
     }, [dispatch, navigate, loginState]);
     return <div></div>;
-}
-
-export default withNoAuth(Auth);
+});

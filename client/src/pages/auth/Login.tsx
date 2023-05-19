@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../actions/authAction";
 import { withNoAuth } from '../../hocs/withAuth';
 
-const Login = () => {
+export const Login = withNoAuth(() => {
     const navigate = useNavigate();
     const [, setCookie] = useCookies(["loginState"]);
     const dispatch = useDispatch();
@@ -28,6 +28,4 @@ const Login = () => {
             <AuthFormComponent service="login" onSuccess={handleSuccess} />
         </div>
     );
-};
-
-export default withNoAuth(Login);
+});

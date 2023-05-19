@@ -1,7 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { BoardTab, BoardTabList, BoardHeader, BoardSearchWrap, BoardSearch, BoardSearchBtn, BoardTable, BoardTableTh, BoardTableTd } from "../../styles/board";
 import { BoardTabContext, BoardTabContextProps } from "../../contexts/BoardTabContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
+// 게시판 탭
 export const BoardListTabComponent = () => {
     const {activeTab, changeTab} = useContext<BoardTabContextProps>(BoardTabContext);
 
@@ -17,7 +20,14 @@ export const BoardListTabComponent = () => {
     );
 }
 
+// 게시판 리스트
 export const BoardListComponent = () => {
+    const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
+
+    useEffect(() => {
+        // board list 호출
+    }, []);
+
     return (
         <div>
             <BoardHeader>
@@ -51,6 +61,7 @@ export const BoardListComponent = () => {
                     </tr>
                 </tbody>
             </BoardTable>
+            {isLoggedIn ? <a href="/board/post">글쓰기</a> : ''}
         </div>
     );
 }
