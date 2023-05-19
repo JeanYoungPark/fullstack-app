@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { BoardTab, BoardTabList, BoardHeader, BoardSearchWrap, BoardSearch, BoardSearchBtn, BoardTable, BoardTableTh, BoardTableTd } from "../../styles/board";
 import { BoardTabContext, BoardTabContextProps } from "../../contexts/BoardTabContext";
 
-function BoardListTabComponent() {
+export const BoardListTabComponent = () => {
     const {activeTab, changeTab} = useContext<BoardTabContextProps>(BoardTabContext);
 
     return (
@@ -17,7 +17,7 @@ function BoardListTabComponent() {
     );
 }
 
-function BoardListComponent() {
+export const BoardListComponent = () => {
     return (
         <div>
             <BoardHeader>
@@ -41,9 +41,9 @@ function BoardListComponent() {
                 </thead>
                 <tbody>
                     <tr>
-                        <BoardTableTd>1</BoardTableTd>
+                        <BoardTableTd className='bold'>1</BoardTableTd>
                         <BoardTableTd>소설</BoardTableTd>
-                        <BoardTableTd>10월 26일 자기계발 신간 리스트</BoardTableTd>
+                        <BoardTableTd className='left bold'>10월 26일 자기계발 신간 리스트</BoardTableTd>
                         <BoardTableTd>관리자</BoardTableTd>
                         <BoardTableTd>40분전</BoardTableTd>
                         <BoardTableTd>1</BoardTableTd>
@@ -54,5 +54,3 @@ function BoardListComponent() {
         </div>
     );
 }
-
-export {BoardListTabComponent, BoardListComponent};

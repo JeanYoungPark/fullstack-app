@@ -2,7 +2,7 @@ import {BoardListTabComponent, BoardListComponent} from "../../components/board/
 import {BoardTabProvider} from "../../contexts/BoardTabContext";
 import { BoardTitle } from "../../styles/board";
 
-function List() {
+export const list = () => {
     
 
     return (
@@ -15,5 +15,3 @@ function List() {
         </BoardTabProvider>
     );
 }
-
-export default List;

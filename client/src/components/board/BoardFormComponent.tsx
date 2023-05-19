@@ -1,7 +1,3 @@
-import React from "react";
-
-function BoardFormComponent() {
+export const BoardFormComponent = () => {
     return <div>BoardFormComponent</div>;
 }
-
-export default BoardFormComponent;

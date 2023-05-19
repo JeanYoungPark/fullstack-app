@@ -5,7 +5,7 @@ import { RootState } from "../../store";
 import { logout } from "../../slices/authSlice";
 import { CommonTab, CommonList, CommonTabLinkWrap, CommonTabLink } from "../../styles/common"
 
-function TabComponent() {
+export const TabComponent = () => {
     const navigate = useNavigate();
     const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
     const dispatch = useDispatch();
@@ -34,5 +34,3 @@ function TabComponent() {
         </CommonTab>
     )
 }
-
-export default TabComponent;

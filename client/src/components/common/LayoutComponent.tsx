@@ -1,12 +1,12 @@
 import { ReactNode } from "react"
-import TabComponent from "./TabComponent"
+import { TabComponent } from "./TabComponent"
 import { CommonLayout } from "../../styles/common"
 
 interface CommonLayoutProps {
   children: ReactNode;
 }
 
-function Layout({children}: CommonLayoutProps) {
+export const Layout = ({children}: CommonLayoutProps) => {
   return (
     <CommonLayout>
       <TabComponent />

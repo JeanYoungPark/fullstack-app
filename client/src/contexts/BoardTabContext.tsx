@@ -15,7 +15,6 @@ export const BoardTabProvider: React.FC<{children: ReactNode}> = ({ children }) 
     
     const changeTab = (tab: string) => {
         setActiveTab(tab);
-        console.log(tab);
     }
 
     return (

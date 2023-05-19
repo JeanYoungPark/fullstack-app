@@ -1,7 +1,5 @@
 import React from "react";
 
-function view() {
+export const view = () => {
     return <div>view</div>;
 }
-
-export default view;

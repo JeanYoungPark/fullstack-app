@@ -6,7 +6,7 @@ interface AuthFormComponentProps {
     onSuccess: Function;
 }
 
-function AuthFormComponent(props: AuthFormComponentProps){
+export const AuthFormComponent = (props: AuthFormComponentProps) => {
     interface Data {
         email: string;
         password: string;
@@ -121,5 +121,3 @@ function AuthFormComponent(props: AuthFormComponentProps){
         </div>
     );
 };
-
-export default AuthFormComponent;

@@ -58,14 +58,26 @@ export const BoardTable = styled.table`
 `;
 
 export const BoardTableTh = styled.th`
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.1em;
     font-weight: bold;
 `;
 
 export const BoardTableTd = styled.td`
-    padding: 10px;
-    text-align: left;
+    padding: 15px;
+    text-align: center;
     border: 1px solid #ccc;
+    border-width: 0 0 1px 0;
+    font-size: 1.1em;
+
+    &.left {
+        text-align: left;
+    }
+
+    &.bold {
+        font-weight: bold;
+    }
 `;

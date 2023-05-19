@@ -1,6 +1,6 @@
 import "../../styles/auth.css";
 import { useCallback } from 'react';
-import AuthFormComponent from '../../components/AuthFormComponent';
+import { AuthFormComponent } from '../../components/AuthFormComponent';
 import { useNavigate } from 'react-router-dom';
 import { withNoAuth } from '../../hocs/withAuth';
 

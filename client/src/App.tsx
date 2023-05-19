@@ -5,8 +5,8 @@ import Join from "./pages/auth/Join";
 import Login from "./pages/auth/Login";
 import Auth from "./pages/auth/Auth";
 import Home from "./pages/Home";
-import BoardList from "./pages/board/List";
-import BoardView from "./pages/board/View";
+import { list as BoardList } from "./pages/board/List";
+import { view as BoardView } from "./pages/board/View";
 import { CookiesProvider } from "react-cookie";
 import Layout from "./components/common/LayoutComponent";
 
