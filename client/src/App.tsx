@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import { list as BoardList } from "./pages/board/List";
 import { view as BoardView } from "./pages/board/View";
 import { CookiesProvider } from "react-cookie";
-import Layout from "./components/common/LayoutComponent";
+import { Layout } from "./components/common/LayoutComponent";
 
 function App() {
     return (

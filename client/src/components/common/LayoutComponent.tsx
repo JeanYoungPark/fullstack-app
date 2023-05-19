@@ -14,5 +14,3 @@ export const Layout = ({children}: CommonLayoutProps) => {
     </CommonLayout>
   )
 }
-
-export default Layout
