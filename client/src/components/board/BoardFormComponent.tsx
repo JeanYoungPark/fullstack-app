@@ -1,3 +1,9 @@
+import { Layout } from "../common/LayoutComponent";
+
 export const BoardFormComponent = () => {
-    return <div>BoardFormComponent</div>;
+    return (
+        <Layout>
+            
+        </Layout>
+    );
 }
