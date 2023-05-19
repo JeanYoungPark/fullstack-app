@@ -1,10 +1,23 @@
-import { BoardHeader, BoardSearchWrap, BoardSearch, BoardSearchBtn, BoardTable, BoardTableTh, BoardTableTd } from "../../styles/board";
+import { useContext } from "react";
+import { BoardTab, BoardTabList, BoardHeader, BoardSearchWrap, BoardSearch, BoardSearchBtn, BoardTable, BoardTableTh, BoardTableTd } from "../../styles/board";
+import { BoardTabContext, BoardTabContextProps } from "../../contexts/BoardTabContext";
 
-interface ChildProps {
-    category: string;
-  }
-  
-function BoardListComponent(props: ChildProps) {
+function BoardListTabComponent() {
+    const {activeTab, changeTab} = useContext<BoardTabContextProps>(BoardTabContext);
+
+    return (
+        <BoardTab>
+            <BoardTabList className={activeTab === 'all' ? 'focus' : ''} onClick={() => changeTab('all')}>전체</BoardTabList>
+            <BoardTabList className={activeTab === 'literature' ? 'focus' : ''} onClick={() => changeTab('literature')}>문학</BoardTabList>
+            <BoardTabList className={activeTab === 'economic' ? 'focus' : ''} onClick={() => changeTab('economic')}>경제경영</BoardTabList>
+            <BoardTabList className={activeTab === 'development' ? 'focus' : ''} onClick={() => changeTab('development')}>자기계발</BoardTabList>
+            <BoardTabList className={activeTab === 'innovation' ? 'focus' : ''} onClick={() => changeTab('innovation')}>경영혁신</BoardTabList>
+            <BoardTabList className={activeTab === 'computer' ? 'focus' : ''} onClick={() => changeTab('computer')}>컴퓨터</BoardTabList>
+        </BoardTab>
+    );
+}
+
+function BoardListComponent() {
     return (
         <div>
             <BoardHeader>
@@ -42,4 +55,4 @@ function BoardListComponent(props: ChildProps) {
     );
 }
 
-export default BoardListComponent;
+export {BoardListTabComponent, BoardListComponent};

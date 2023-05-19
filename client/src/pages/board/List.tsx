@@ -1,25 +1,18 @@
-import { useState } from "react";
-import BoardListComponent from "../../components/board/BoardListComponent";
-import { BoardTitle, BoardTab, BoardTabList } from "../../styles/board";
+import {BoardListTabComponent, BoardListComponent} from "../../components/board/BoardListComponent";
+import {BoardTabProvider} from "../../contexts/BoardTabContext";
+import { BoardTitle } from "../../styles/board";
 
 function List() {
-    const [category, SetCategory] = useState("");
+    
 
     return (
-        <div>
+        <BoardTabProvider>
             <BoardTitle>게시판</BoardTitle>
             <div>
-                <BoardTab>
-                    <BoardTabList className="focus">전체</BoardTabList>
-                    <BoardTabList>문학</BoardTabList>
-                    <BoardTabList>경제경영</BoardTabList>
-                    <BoardTabList>자기계발</BoardTabList>
-                    <BoardTabList>경영혁신</BoardTabList>
-                    <BoardTabList>컴퓨터</BoardTabList>
-                </BoardTab>
-                <BoardListComponent category={category}/>
+                <BoardListTabComponent/>
+                <BoardListComponent/>
             </div>
-        </div>
+        </BoardTabProvider>
     );
 }
 
