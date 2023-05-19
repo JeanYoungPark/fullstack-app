@@ -4,7 +4,7 @@ import { AuthFormComponent } from "../../components/AuthFormComponent";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
-import { loginSuccess } from "../../actions/authAction";
+import { loginSuccess } from "../../slices/authSlice";
 import { withNoAuth } from '../../hocs/withAuth';
 
 export const Login = withNoAuth(() => {
@@ -18,7 +18,7 @@ export const Login = withNoAuth(() => {
     }
 
     const handleSuccess = useCallback((res: tokenResponseProps) => {
-        dispatch(loginSuccess(res.token));
+        dispatch(loginSuccess({token: res.token}));
         setCookie("loginState", res.token, { path: "/", maxAge: 86400 });
         navigate("/");
     }, []);

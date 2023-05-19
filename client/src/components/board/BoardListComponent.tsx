@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { BoardTab, BoardTabList, BoardHeader, BoardSearchWrap, BoardSearch, BoardSearchBtn, BoardTable, BoardTableTh, BoardTableTd } from "../../styles/board";
+import { BoardTab, BoardTabList, BoardHeader, BoardSearchWrap, BoardSearch, BoardSearchBtn, BoardTable, BoardTableTh, BoardTableTd, BoardPostBtnWrap, BoardPostBtn } from "../../styles/board";
 import { BoardTabContext, BoardTabContextProps } from "../../contexts/BoardTabContext";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -61,7 +61,7 @@ export const BoardListComponent = () => {
                     </tr>
                 </tbody>
             </BoardTable>
-            {isLoggedIn ? <a href="/board/post">글쓰기</a> : ''}
+            <BoardPostBtnWrap>{isLoggedIn ? <BoardPostBtn href="/board/post">글쓰기</BoardPostBtn> : ''}</BoardPostBtnWrap>
         </div>
     );
 }

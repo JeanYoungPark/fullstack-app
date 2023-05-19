@@ -81,3 +81,22 @@ export const BoardTableTd = styled.td`
         font-weight: bold;
     }
 `;
+
+export const BoardPostBtnWrap = styled.div`
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 1vh;
+`;
+
+export const BoardPostBtn = styled.a`
+    padding: 8px;
+    text-align: center;
+    color: #333;
+    background-color: #f3f3f3;
+    border: 1px solid #ddd;
+
+    &:hover {
+        color: #333;
+        text-decoration: none;
+    }
+`;

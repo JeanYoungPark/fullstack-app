@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { RootState } from "../store";
 import { logout } from '../slices/authSlice';
 
-const withAuth = (
+export const withAuth = (
     WrappedComponent: React.ComponentType
 ) => {
     const Component = () => {
@@ -31,7 +31,7 @@ const withAuth = (
     return Component;
 }
 
-const withNoAuth = (
+export const withNoAuth = (
     WrappedComponent: React.ComponentType
 ) => {
     const Component = () => {
@@ -57,5 +57,3 @@ const withNoAuth = (
 
     return Component;
 }
-
-export {withAuth, withNoAuth};
