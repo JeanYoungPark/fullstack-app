@@ -21,7 +21,7 @@ function App() {
                         <Route path="/join" element={<Join />} />
                         <Route path="/auth" element={<Auth />} />
                         <Route path="/board">
-                            <Route path="list" element={<BoardList/>} />
+                            <Route path="" element={<BoardList/>} />
                             <Route path=":postId" element={<BoardView/>}/>
                             <Route path="post" element={<BoardPost/>}/>
                         </Route>
