@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios, { AxiosError } from "axios";
+import { AuthContainer, AuthLogo, AuthTxt, AuthSocialWrap, AuthSocialTxt, AuthSocialWrapUl, AuthOr, AuthForm } from "../styles/auth";
 
 interface AuthFormComponentProps {
     service: string;
@@ -74,30 +75,30 @@ export const AuthFormComponent = (props: AuthFormComponentProps) => {
     }, [fetchNaverLoginUrl, fetchKakaoLoginUrl]);
 
     return (
-        <div className="container__wrapper">
-            <h1 className="logo text-center">logo</h1>
-            <p className="text-center">하나의 계정으로 서비스를 이용하세요.</p>
-            <div className="socialLogin">
-                <p className="txt text-center">
+        <AuthContainer>
+            <AuthLogo>logo</AuthLogo>
+            <AuthTxt>하나의 계정으로 서비스를 이용하세요.</AuthTxt>
+            <AuthSocialWrap>
+                <AuthSocialTxt>
                     다른 서비스로 {props.service === "login" ? "로그인" : "회원가입"}
-                </p>
-                <ul className="socialLogin__box">
-                    <li className="el google">
+                </AuthSocialTxt>
+                <AuthSocialWrapUl>
+                    <li className="google">
                         <span onClick={() => alert('서비스 준비중입니다.')}>구글</span>
                     </li>
-                    <li className="el naver">
+                    <li className="naver">
                         <span onClick={() => window.location.href = naverLoginUrl}>네이버</span>
                     </li>
-                    <li className="el kakao">
+                    <li className="kakao">
                         <span onClick={() => window.location.href = kakaoLoginUrl}>카카오톡</span>
                     </li>
-                </ul>
-            </div>
-            <div className="or">
-                <div className="mid-line"></div>
-                <p className="txt text-center">또는</p>
-            </div>
-            <div className="form">
+                </AuthSocialWrapUl>
+            </AuthSocialWrap>
+            <AuthOr>
+                <div></div>
+                <p>또는</p>
+            </AuthOr>
+            <AuthForm>
                 <form onSubmit={handleSubmit}>
                     <p>
                         <input
@@ -117,7 +118,7 @@ export const AuthFormComponent = (props: AuthFormComponentProps) => {
                         {props.service === "login" ? "로그인" : "회원가입"}
                     </button>
                 </form>
-            </div>
-        </div>
+            </AuthForm>
+        </AuthContainer>
     );
 };
