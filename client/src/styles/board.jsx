@@ -101,14 +101,18 @@ export const BoardPostBtn = styled.a`
     }
 `;
 
-export const BoardPostForm = styled.div`
-    input, textarea {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        margin-bottom: 20px;
-        box-sizing: border-box;
+export const BoardPostFormTextarea = styled.textarea`
+    height: 30vh;
+`;
+
+export const BoardPostFormBtnWrap = styled.div`
+    display: flex;
+
+    .mgLeft {
+        margin-left: 5px;
+    }
+
+    .mgRight {
+        margin-right: 5px;
     }
 `;

@@ -17,6 +17,9 @@ export const BoardViewComponent = () => {
     return (
         <div>
             <h2>게시판 ID: {id}</h2>
+            <p>내용</p>
+            <button type="button">수정</button>
+            <button type="button">삭제</button>
         </div>
     )
 }
