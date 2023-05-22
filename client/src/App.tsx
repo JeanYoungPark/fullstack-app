@@ -22,7 +22,7 @@ function App() {
                         <Route path="/auth" element={<Auth />} />
                         <Route path="/board">
                             <Route path="" element={<BoardList/>} />
-                            <Route path=":postId" element={<BoardView/>}/>
+                            <Route path=":id" element={<BoardView/>}/>
                             <Route path="post" element={<BoardPost/>}/>
                         </Route>
                     </Routes>
