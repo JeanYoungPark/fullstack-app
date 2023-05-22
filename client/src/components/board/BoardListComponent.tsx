@@ -3,6 +3,7 @@ import { BoardTab, BoardTabList, BoardHeader, BoardSearchWrap, BoardSearch, Boar
 import { BoardTabContext, BoardTabContextProps } from "../../contexts/BoardTabContext";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import axios from "axios";
 
 // 게시판 탭
 export const BoardListTabComponent = () => {
@@ -25,7 +26,13 @@ export const BoardListComponent = () => {
     const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
     useEffect(() => {
-        // board list 호출
+        axios.get(
+            "http://localhost:5000/board/list"
+        ).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.error(error);
+        });
     }, []);
 
     return (
@@ -53,7 +60,7 @@ export const BoardListComponent = () => {
                     <tr>
                         <BoardTableTd className='bold'>1</BoardTableTd>
                         <BoardTableTd>소설</BoardTableTd>
-                        <BoardTableTd className='left bold'>10월 26일 자기계발 신간 리스트</BoardTableTd>
+                        <BoardTableTd className='left bold'><a href="/board/1">10월 26일 자기계발 신간 리스트</a></BoardTableTd>
                         <BoardTableTd>관리자</BoardTableTd>
                         <BoardTableTd>40분전</BoardTableTd>
                         <BoardTableTd>1</BoardTableTd>

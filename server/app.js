@@ -9,6 +9,7 @@ const pool = require("./db");
 let indexRouter = require("./routes/index");
 let authRouter = require("./routes/auth");
 let oAuthRouter = require("./routes/oauth");
+let boardRouter = require("./routes/board");
 
 let app = express();
 const session = require("express-session");
@@ -60,6 +61,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use("/oauth", oAuthRouter);
+app.use("/board", boardRouter);
 
 // 존재하지 않는 페이지 접근시 404 에러
 app.use(function (req, res, next) {

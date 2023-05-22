@@ -16,24 +16,23 @@ export const AuthFormComponent = (props: AuthFormComponentProps) => {
     const [naverLoginUrl, setNaverLoginUrl] = useState("");
     const [kakaoLoginUrl, setKakaoLoginUrl] = useState("");
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        try {
-            const formData = new FormData(e.currentTarget);
-            const data: Data = {
-                email: formData.get("email") as string,
-                password: formData.get("password") as string,
-            };
-            const response = await axios.post(
-                `http://localhost:5000/auth/${props.service}`,
-                data
-            );
+        const formData = new FormData(e.currentTarget);
+        const data: Data = {
+            email: formData.get("email") as string,
+            password: formData.get("password") as string,
+        };
 
+        axios.post(
+            `http://localhost:5000/auth/${props.service}`,
+            data
+        ).then((response) => {
             if (response.status === 200) {
                 props.onSuccess(response.data);
             }
-        } catch (error) {
+        }).catch((error) => {
             if (axios.isAxiosError(error)) {
                 const axiosError = error as AxiosError<{ message: string }>;
                 if (axiosError.response?.data) {
@@ -41,31 +40,29 @@ export const AuthFormComponent = (props: AuthFormComponentProps) => {
                     alert(errorMessage);
                 }
             }
-        }
+        });
     };
 
     // 네이버 로그인 URL 가져오기
-    const fetchNaverLoginUrl = useCallback(async () => {
-        try {
-            const response = await axios.get(
-                "http://localhost:5000/oauth/naver-login-url"
-            );
+    const fetchNaverLoginUrl = useCallback(() => {
+        axios.get(
+            "http://localhost:5000/oauth/naver-login-url"
+        ).then((response) => {
             setNaverLoginUrl(response.data.url);
-        } catch (error) {
-            console.log(error);
-        }
+        }).catch((error) => {
+            console.error(error);
+        });
     }, []);
 
     // 카카오 로그인 URL 가져오기
-    const fetchKakaoLoginUrl = useCallback(async () => {
-        try {
-            const response = await axios.get(
-                "http://localhost:5000/oauth/kakao-login-url"
-            );
+    const fetchKakaoLoginUrl = useCallback(() => {
+        axios.get(
+            "http://localhost:5000/oauth/kakao-login-url"
+        ).then((response) => {
             setKakaoLoginUrl(response.data.url);
-        } catch (error) {
-            console.log(error);
-        }
+        }).catch((error) => {
+            console.error(error);
+        });
     }, []);
 
     // 컴포넌트가 처음 렌더링될 때 네이버 로그인 URL을 가져옴
