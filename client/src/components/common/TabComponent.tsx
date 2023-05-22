@@ -1,18 +1,19 @@
 import { useCallback } from "react";
-import { useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { logout } from "../../slices/authSlice";
 import { CommonTab, CommonList, CommonTabLinkWrap, CommonTabLink } from "../../styles/common"
+import { useCookies } from "react-cookie";
 
 export const TabComponent = () => {
-    const navigate = useNavigate();
     const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
     const dispatch = useDispatch();
+    const [,,removeCookies] = useCookies(["loginState"]);
     
     const handleOnClick = useCallback(() => {
         dispatch(logout());
-        navigate("/");
+        removeCookies('loginState');
+        window.location.href = "/";
     }, []);
 
     return (

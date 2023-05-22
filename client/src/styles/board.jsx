@@ -100,3 +100,15 @@ export const BoardPostBtn = styled.a`
         text-decoration: none;
     }
 `;
+
+export const BoardPostForm = styled.div`
+    input, textarea {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+`;

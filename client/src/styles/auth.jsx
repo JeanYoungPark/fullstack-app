@@ -92,24 +92,4 @@ export const AuthOr = styled.div`
 
 export const AuthForm = styled.div`
     padding:2vh 0;
-
-    input {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        margin-bottom: 20px;
-        box-sizing: border-box;
-    }
-
-    button {
-        width: 100%;
-        padding: 10px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        background-color: #ccc;
-        color: #333;
-        cursor: pointer;
-    }
 `;

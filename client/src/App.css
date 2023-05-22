@@ -68,6 +68,7 @@ td {
   vertical-align: baseline;
   background: transparent;
   list-style: none;
+  color: #333;
 }
 
 /* default styles */
@@ -79,7 +80,7 @@ body {
 }
 
 a {
-  color: #007bff;
+  color: #333;
   text-decoration: none;
 }
 
@@ -114,7 +115,7 @@ footer {
 }
 
 /* button styles */
-/* button,
+button,
 input[type="submit"] {
   display: inline-block;
   width: 100%;
@@ -126,12 +127,12 @@ input[type="submit"] {
   cursor: pointer;
   box-sizing: border-box;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out
-} */
+}
 
-/* button:hover,
+button:hover,
 input[type="submit"]:hover {
   background-color: #3e85e4;
-} */
+}
 
 /* form styles */
 form label {
@@ -145,20 +146,16 @@ form textarea {
   width: 100%;
   padding: 10px;
   border-radius: 4px;
-  border-top: 1px solid #ccc;
+  border: 1px solid #ccc;
   margin-bottom: 20px;
   box-sizing: border-box;
 }
 
-form textarea {
-  height: 150px;
-}
-
 /* utility classes */
-.text-center {
+/* .text-center {
   text-align: center;
 }
 
 .text-right {
   text-align: right;
-}
+} */
