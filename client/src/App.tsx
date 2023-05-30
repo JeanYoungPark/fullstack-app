@@ -23,6 +23,7 @@ function App() {
                         <Route path="/board">
                             <Route path="" element={<BoardList/>} />
                             <Route path=":id" element={<BoardView/>}/>
+                            <Route path="modify/:id" element={<BoardPost/>}/>
                             <Route path="post" element={<BoardPost/>}/>
                         </Route>
                     </Routes>

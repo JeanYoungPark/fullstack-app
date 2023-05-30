@@ -84,11 +84,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  color: #0056b3;
-  text-decoration: underline;
-}
-
 /* container styles */
 .container {
   margin: 0 auto;
@@ -115,7 +110,7 @@ footer {
 }
 
 /* button styles */
-button,
+/* button,
 input[type="submit"] {
   display: inline-block;
   width: 100%;
@@ -132,7 +127,7 @@ input[type="submit"] {
 button:hover,
 input[type="submit"]:hover {
   background-color: #3e85e4;
-}
+} */
 
 /* form styles */
 form label {

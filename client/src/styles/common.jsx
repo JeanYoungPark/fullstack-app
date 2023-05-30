@@ -37,7 +37,41 @@ export const CommonTabLink = styled.a`
 
     &:hover {
         font-weight: bold;
-        color: blue;
+        color: #609ae9;
         text-decoration: none;
+    }
+`;
+
+export const CommonBtnButton = styled.button`
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #609ae9;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+    &:hover {
+        background-color: #3e85e4;
+    }
+`;
+
+export const CommonBtnA = styled.a`
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #609ae9;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+    &:hover {
+        background-color: #3e85e4;
     }
 `;

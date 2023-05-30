@@ -1,6 +1,10 @@
-import { BoardPostFormTextarea, BoardPostFormBtnWrap } from "../../styles/board";
+import { BoardPostFormTextarea, BoardPostBtnWrap, BoardPostBtns } from "../../styles/board";
 
-export const BoardFormComponent = () => {
+interface BoardFormComponentProps {
+    service: string;
+}
+
+export const BoardFormComponent = (props: BoardFormComponentProps) => {
     return (
         <form>
             <div>
@@ -14,10 +18,11 @@ export const BoardFormComponent = () => {
             <div>
                 <input type="file" />
             </div>
-            <BoardPostFormBtnWrap>
-                <button className="mgRight" type="submit">저장</button>
-                <button className="mgLeft" type="button">취소</button>
-            </BoardPostFormBtnWrap>
+            <BoardPostBtnWrap>
+                <BoardPostBtns className="mgRight" type="submit">저장</BoardPostBtns>
+                <BoardPostBtns className="mgLeft" type="button">취소</BoardPostBtns>
+            </BoardPostBtnWrap>
         </form>
     );
 }
+  

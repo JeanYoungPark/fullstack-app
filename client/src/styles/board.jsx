@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CommonBtnButton, CommonBtnA } from './common';
 
 export const BoardTitle = styled.h1`
     font-size: 1.5em;
@@ -17,8 +18,7 @@ export const BoardTabList = styled.li`
     cursor: pointer;
 
     &.focus {
-        color
-        : blue;
+        color: #609ae9;
         text-decoration: underline;
     }
 `;
@@ -44,12 +44,10 @@ export const BoardSearch = styled.input`
     box-sizing: border-box;
 `;
 
-export const BoardSearchBtn = styled.button`
+export const BoardSearchBtn = styled(CommonBtnButton)`
     height: 100%;
     padding: 2px 8px;
-    border: 1px solid #ccc;
-    border-width: 1px 1px 1px 0;
-    box-sizing: border-box;
+    border-radius: 0;
 `;
 
 export const BoardTable = styled.table`
@@ -88,31 +86,15 @@ export const BoardPostBtnWrap = styled.div`
     margin-top: 1vh;
 `;
 
-export const BoardPostBtn = styled.a`
-    padding: 8px;
-    text-align: center;
-    color: #333;
-    background-color: #f3f3f3;
-    border: 1px solid #ddd;
-
-    &:hover {
-        color: #333;
-        text-decoration: none;
-    }
+export const BoardPostBtn = styled(CommonBtnA)`
+    width: 85px;
 `;
 
 export const BoardPostFormTextarea = styled.textarea`
     height: 30vh;
 `;
 
-export const BoardPostFormBtnWrap = styled.div`
-    display: flex;
-
-    .mgLeft {
-        margin-left: 5px;
-    }
-
-    .mgRight {
-        margin-right: 5px;
-    }
+export const BoardPostBtns = styled(CommonBtnA)`
+    width: 70px;
+    margin-left: 5px;
 `;

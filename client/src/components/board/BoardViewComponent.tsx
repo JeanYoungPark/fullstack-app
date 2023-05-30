@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
+import { BoardPostBtns, BoardPostBtnWrap } from "../../styles/board";
 
 export const BoardViewComponent = () => {
     const { id } = useParams();
@@ -14,12 +15,15 @@ export const BoardViewComponent = () => {
             console.error(error);
         });
     }, []);
+
     return (
         <div>
             <h2>게시판 ID: {id}</h2>
             <p>내용</p>
-            <button type="button">수정</button>
-            <button type="button">삭제</button>
+            <BoardPostBtnWrap>
+                <BoardPostBtns>삭제</BoardPostBtns>
+                <BoardPostBtns href={`/board/modify/${id}`}>수정</BoardPostBtns>
+            </BoardPostBtnWrap>
         </div>
     )
 }
