@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import { list as BoardList } from "./pages/board/List";
 import { view as BoardView } from "./pages/board/View";
 import { post as BoardPost } from "./pages/board/Post";
+import { Modify as BoardModify } from "./pages/board/Modify";
 import { CookiesProvider } from "react-cookie";
 import { Layout } from "./components/common/LayoutComponent";
 
@@ -23,7 +24,7 @@ function App() {
                         <Route path="/board">
                             <Route path="" element={<BoardList/>} />
                             <Route path=":id" element={<BoardView/>}/>
-                            <Route path="modify/:id" element={<BoardPost/>}/>
+                            <Route path="modify/:id" element={<BoardModify/>}/>
                             <Route path="post" element={<BoardPost/>}/>
                         </Route>
                     </Routes>
@@ -34,3 +35,4 @@ function App() {
 }
 
 export default App;
+

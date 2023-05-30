@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import { BoardPostFormTextarea, BoardPostBtnWrap, BoardPostBtns } from "../../styles/board";
 
 interface BoardFormComponentProps {
@@ -5,6 +6,11 @@ interface BoardFormComponentProps {
 }
 
 export const BoardFormComponent = (props: BoardFormComponentProps) => {
+    const { service } = props;
+    const { id } = useParams();
+    console.log(props);
+    const location = service === "save" ? '/board' : `/board/${id}`;
+
     return (
         <form>
             <div>
@@ -19,8 +25,8 @@ export const BoardFormComponent = (props: BoardFormComponentProps) => {
                 <input type="file" />
             </div>
             <BoardPostBtnWrap>
-                <BoardPostBtns className="mgRight" type="submit">저장</BoardPostBtns>
-                <BoardPostBtns className="mgLeft" type="button">취소</BoardPostBtns>
+                <BoardPostBtns>저장</BoardPostBtns>
+                <BoardPostBtns href={location}>취소</BoardPostBtns>
             </BoardPostBtnWrap>
         </form>
     );

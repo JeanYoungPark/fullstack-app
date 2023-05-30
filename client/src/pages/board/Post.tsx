@@ -3,6 +3,6 @@ import { BoardFormComponent } from "../../components/board/BoardFormComponent";
 
 export const post = withAuth(() => {
     return (
-        <BoardFormComponent service="post" />
+        <BoardFormComponent service="save" />
     );
 });
