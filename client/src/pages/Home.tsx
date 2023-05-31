@@ -30,15 +30,16 @@ export const Home = () => {
                 }else if(arrowKeyArr.includes(e.key)){
                     keyName = e.key;
                 }
-
+            
+                console.log(ball.offsetTop);
                 if(keyName){
-                    if(keyName === "ArrowUp"){
+                    if(keyName === "ArrowUp" && ball.offsetTop - speed - ball.clientHeight > 0){
                         ball.style.top = `${ball.offsetTop - speed}px`;
-                    }else if(keyName === "ArrowDown"){
+                    }else if(keyName === "ArrowDown" && ball.offsetTop + speed + ball.clientHeight + 80 < window.innerHeight){
                         ball.style.top = `${ball.offsetTop + speed}px`;
-                    }else if(keyName === "ArrowLeft"){
+                    }else if(keyName === "ArrowLeft" && ball.offsetLeft - speed - ball.clientWidth > 0){
                         ball.style.left = `${ball.offsetLeft - speed}px`;
-                    }else if(keyName === "ArrowRight"){
+                    }else if(keyName === "ArrowRight" && ball.offsetLeft + speed + ball.clientWidth < window.innerWidth){
                         ball.style.left = `${ball.offsetLeft + speed}px`;
                     }
                 }

@@ -1,11 +1,15 @@
 import styled, { keyframes } from 'styled-components';
 
 export const Wrap = styled.div`
-    position: relative;
+    position: fixed;
+    width: 100%;
+    height: calc(100% - 80px);
+    top: 80px;
+    left: 0;
 `;
 
 export const Ball = styled.div`
-    position:absolute;
+    position: absolute;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);

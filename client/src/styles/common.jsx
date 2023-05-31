@@ -12,6 +12,7 @@ export const CommonTab = styled.div`
     width:100%;
     height: 80px;
     padding: 10px 0;
+    box-sizing: border-box;
 `;
 
 export const CommonList = styled.ul`
