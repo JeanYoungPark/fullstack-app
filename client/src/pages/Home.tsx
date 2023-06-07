@@ -22,7 +22,7 @@ export const Home = () => {
                 if(arrowKeyArr.includes(e.key)){
                     setArrowKey(e.key);
                 }
-
+                
                 if((ctrlKey && arrowKeyArr.includes(e.key)) || (arrowKey && e.ctrlKey)){
                     // 컨트롤키 먼저 누른 경우, 방향키를 먼저 누른 경우
                     speed += 10;
@@ -31,7 +31,7 @@ export const Home = () => {
                     keyName = e.key;
                 }
             
-                console.log(ball.offsetTop);
+                console.log(speed);
                 if(keyName){
                     if(keyName === "ArrowUp" && ball.offsetTop - speed - ball.clientHeight > 0){
                         ball.style.top = `${ball.offsetTop - speed}px`;
@@ -53,7 +53,8 @@ export const Home = () => {
     
     useEffect(() => {
         const handleKyePressOut = (e: KeyboardEvent) => {
-            if(e.ctrlKey){
+
+            if(e.key === "Control"){
                 setCtrlKey(false);
             }
 
